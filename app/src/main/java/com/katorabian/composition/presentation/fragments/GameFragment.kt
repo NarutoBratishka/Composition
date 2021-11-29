@@ -21,13 +21,11 @@ import com.katorabian.composition.presentation.GameViewModel
 class GameFragment : Fragment() {
 
     private lateinit var level: Level
+    private val viewModelFactory by lazy {
+        GameViewModelFactory(requireActivity().application, level)
+    }
     private val viewModel: GameViewModel by lazy {
-        ViewModelProvider(
-            this,
-            AndroidViewModelFactory.getInstance(
-                requireActivity().application
-            )
-        ).get(GameViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
     }
 
     private val tvOptions by lazy {
@@ -62,7 +60,6 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModels()
         setOnClickListenersToOptions()
-        viewModel.startGame(level)
     }
 
     private fun setOnClickListenersToOptions() {
