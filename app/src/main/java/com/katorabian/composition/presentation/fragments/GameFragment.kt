@@ -5,15 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.katorabian.composition.R
 import com.katorabian.composition.databinding.FragmentGameBinding
 import com.katorabian.composition.domain.entity.GameResult
 import com.katorabian.composition.domain.entity.GameSettings
 import com.katorabian.composition.domain.entity.Level
+import com.katorabian.composition.presentation.GameViewModel
 
 class GameFragment : Fragment() {
 
     private lateinit var level: Level
+    private lateinit var viewModel: GameViewModel
+
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding == null")
@@ -33,6 +38,13 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(
+                requireActivity().application
+            )
+        ).get(GameViewModel::class.java)
+
         binding.tvSum.setOnClickListener {
             launchGameFinishedFragment(
                 GameResult(true, 0, 0,
