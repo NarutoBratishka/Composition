@@ -1,10 +1,9 @@
-package com.katorabian.composition.presentation.fragments
+package com.katorabian.composition.presentation
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.katorabian.composition.domain.entity.Level
-import com.katorabian.composition.presentation.GameViewModel
 
 class GameViewModelFactory(
     private val application: Application,
