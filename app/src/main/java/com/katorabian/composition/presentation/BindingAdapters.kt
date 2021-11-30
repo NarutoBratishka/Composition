@@ -68,9 +68,6 @@ private fun getSmileResId(winner: Boolean): Int {
     }
 }
 
-/*~~~~~~~~~~~~~~~~~~~*/
-
-
 @BindingAdapter("enoughPercent")
 fun bindEnoughPercent(progressBar: ProgressBar, enough: Boolean) {
     val color = getColorByState(progressBar.context, enough)
