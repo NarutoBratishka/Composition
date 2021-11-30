@@ -15,7 +15,7 @@ import com.katorabian.composition.domain.usecases.GenerateQuestionUseCase
 import com.katorabian.composition.domain.usecases.GetGameSettingsUseCase
 
 class GameViewModel(
-    private val application: Application,
+    val application: Application,
     private val level: Level
 ) : ViewModel() {
 
